@@ -1,9 +1,9 @@
-const mongose = require('mongoose')
+const mongoose = require('mongoose')
 
-const conectDataBase = () =>{
-    // console.log('connecting with the banck')
+const connectDataBase = () =>{
+    console.log('connecting with the banck')
 
-    mongose.connect(process.env.DATABASE_URL,{
+    mongoose.connect('mongodb://localhost:27017/api-rick-and-morty' ,{
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -11,4 +11,4 @@ const conectDataBase = () =>{
     .catch((err) => console.log(`error connectin to bank ${err}`) )
 }
 
-module.exports = conectDataBase;
+module.exports = connectDataBase;
