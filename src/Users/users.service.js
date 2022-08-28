@@ -14,9 +14,11 @@ const userServiceFind = async () =>{
     const allUser = await user.find()
     return allUser
 }
+const findByIdUserService = (idUser) => User.findById(idUser);
 
 module.exports = {
     findByEmailUserService,
     userServiceCreate,
     userServiceFind,
+    findByIdUserService,
 }

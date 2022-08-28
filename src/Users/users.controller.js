@@ -26,7 +26,18 @@ const userControllerCreate = async (req,res)=>{
         })
     }
 
-    res.status(201).send(userNew)
+    const token = authService.generateToken(user.id);
+
+    res.status(201).send({
+      user: {
+        id: user.id,
+        name,
+        username,
+        email,
+        avatar,
+      },
+      token,
+    });
 
 }
 
