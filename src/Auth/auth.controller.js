@@ -14,7 +14,7 @@ if(!user){
 }
 
 const validPassword = await bcrypt.compare(password, user.password)
-if (!validPassword) {
+   if(!validPassword) {
     return res.status(400).send({ message: "Invalid password" });
   }
 
@@ -24,6 +24,9 @@ if (!validPassword) {
 
 }
 
+
+
 module.exports = {
     authLoginController
+    
 }

@@ -1,13 +1,28 @@
-const user = require('../Users/users.model')
-const jwt = require("jsonwebtoken");
+const user = require('../Users/users.model');
+const jwt = require('jsonwebtoken');
 
-const authLoginService =  (email) => user.findOne({ email: email }).select("+password");
+const authLoginService = (email) =>
+  user.findOne({ email: email }).select('+password');
 
-const generateToke = (idUser) => jwt.sign({ id: idUser}, process.env.SECRET,
-    { expiresIn: 86240 } )
+const findUserById = async (userId) => {
+  return await user.findOne({ _id: userId }).select('+password');
+};
 
+
+
+//   verifyPassword = async (password, user) => {
+//     if (user.password === password) {
+//       return true;
+//     } else {
+//       return false;
+//     }
+
+const generateToke = (idUser) =>
+  jwt.sign({ id: idUser }, process.env.SECRET, { expiresIn: 86240 });
 
 module.exports = {
-    authLoginService,
-    generateToke,
-}
+  authLoginService,
+  generateToke,
+  findUserById,
+  
+};

@@ -1,4 +1,4 @@
-// const mongoose = require('mongoose')
+const mongoose = require('mongoose')
 
 const userService = require ("./users.service.js")
 
@@ -26,7 +26,7 @@ const userControllerCreate = async (req,res)=>{
         })
     }
 
-    const token = authService.generateToken(user.id);
+    const token = userService.generateToken(user.id);
 
     res.status(201).send({
       user: {
@@ -50,8 +50,7 @@ const userControllerFind = async (req, res) => {
 }
 
 
-
 module.exports = {
     userControllerCreate,
     userControllerFind,
-}
+  }
