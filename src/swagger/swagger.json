@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://api-rike-morty.herokuapp.com/api-docs",
+      "url": "https://api-rike-morty.herokuapp.com",
       "descripition": "API Heroku"
     },
     {
