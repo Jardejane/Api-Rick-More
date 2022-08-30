@@ -8,8 +8,6 @@ const findUserById = async (userId) => {
   return await user.findOne({ _id: userId }).select('+password');
 };
 
-
-
 const generateToke = (idUser) =>
   jwt.sign({ id: idUser }, process.env.SECRET, { expiresIn: 86240 });
 

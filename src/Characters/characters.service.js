@@ -1,10 +1,11 @@
 const films = require('./characters.model.js');
 
-const findCreateFilmsFilmsService =  async ( name, imageUrl, userId) => {
- return films.create({name, imageUrl, user: userId});
+const findCreateFilmsFilmsService = async (name, imageUrl, userId) => {
+  return films.create({ name, imageUrl, user: userId });
 };
-const findAllFilmsFilmsService = async () => {
-  const allFilms = await films.find();
+const findAllFilmsFilmsService = async (limit, offset) => {
+  //adicionados limite e offset, conforme pedido no projeto
+  const allFilms = await films.find().skip(offset).limit(limit);
   return allFilms;
 };
 const FindByIdFilmsService = async (idParameter) => {
@@ -12,8 +13,11 @@ const FindByIdFilmsService = async (idParameter) => {
   return IdFilms;
 };
 
+//adicionado parãmetro para mostrar o character novo
 const findEditFilmsFilmsService = async (idParameter, newEdit) => {
-  const editMovie = await films.findByIdAndUpdate(idParameter, newEdit);
+  const editMovie = await films.findByIdAndUpdate(idParameter, newEdit, {
+    new: true,
+  });
   return editMovie;
 };
 

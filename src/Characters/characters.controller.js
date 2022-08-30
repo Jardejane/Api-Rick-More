@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const filmsService = require('./characters.service');
 
 const findAllFilmsController = async (req, res) => {
-  const films = await filmsService.findAllFilmsFilmsService();
+  //adicionados limit e offset
+  const { limit, offset } = req.query;
+  const films = await filmsService.findAllFilmsFilmsService(limit, offset);
   if (films.length == 0) {
     return res.status(404).send({ Message: 'No to registered movies ' });
   }
@@ -15,23 +17,25 @@ const findByIdFilmsController = async (req, res) => {
   console.log(seachMovies);
 };
 const findCreateFilmsController = async (req, res) => {
-  try{
-  const { name, imageUrl} = req.body;
-  if(!name && !imageUrl){
-    res.status(404).send({message: "envie todo os dados"})
+  try {
+    const { name, imageUrl } = req.body;
+    if (!name && !imageUrl) {
+      res.status(404).send({ message: 'envie todo os dados' });
+    }
+
+    const { id } = await filmsService.findCreateFilmsFilmsService(
+      name,
+      imageUrl,
+      req.userId,
+    );
+
+    return res.send({
+      message: 'film criado com sucesso',
+      film: { id, name, imageUrl },
+    });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
   }
-
-  const {id} = await filmsService.findCreateFilmsFilmsService(name, imageUrl, req.userId)
-
-  return res.send({
-    message: "film criado com sucesso",
-    film: {id, name, imageUrl}
-  })
-}catch (err) {
-  res.status(500).send({ message: err.message });
-  // console.log(film)
-}
-
 };
 const findEditFilmsController = async (req, res) => {
   const idParameter = await req.params.id;
@@ -57,18 +61,19 @@ const findDeletFilmsController = async (req, res) => {
 };
 const searchfilmssController = async (req, res) => {
   try {
-    const name = req.body.name
+    //nome está em req.query.name, não no body
+    const name = req.query.name;
 
-    const searchedChar = await filmsService.searchfilmssService( name);
+    const searchedChar = await filmsService.searchfilmssService(name);
     if (!searchedChar) {
-      res.status(404).send({ message: "Name not Found" });
+      res.status(404).send({ message: 'Name not Found' });
     } else {
       res.status(200).send(searchedChar);
     }
   } catch (err) {
-    res.status(404).send({ message: "Error finding character" });
+    res.status(404).send({ message: 'Error finding character' });
   }
-}
+};
 module.exports = {
   findAllFilmsController,
   findByIdFilmsController,
@@ -77,4 +82,3 @@ module.exports = {
   findDeletFilmsController,
   searchfilmssController,
 };
-
