@@ -10,12 +10,12 @@
   },
   "servers": [
     {
-      "url": "http://localhost:130",
-      "descripition": "API local"
+      "url": "https://api-rike-morty.herokuapp.com/api-docs/",
+      "descripition": "API Heroku"
     },
     {
-      "url": "",
-      "descripition": "API Heroku"
+      "url": "http://localhost:130",
+      "descripition": "API local"
     }
   ],
 
