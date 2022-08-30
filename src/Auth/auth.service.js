@@ -10,13 +10,6 @@ const findUserById = async (userId) => {
 
 
 
-//   verifyPassword = async (password, user) => {
-//     if (user.password === password) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-
 const generateToke = (idUser) =>
   jwt.sign({ id: idUser }, process.env.SECRET, { expiresIn: 86240 });
 

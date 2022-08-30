@@ -20,14 +20,11 @@
   ],
 
   "paths": {
-
     "/users/create": {
       "post": {
-        "summary": "Creates new user",
-        "description": "Route responsable for creating a new user",
-        "tags": [
-          "Users"
-        ],
+        "summary": "Criar um novo usuário",
+        "description": "Rota responsável por criar um novo usuário",
+        "tags": ["Users"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -37,11 +34,11 @@
               "examples": {
                 "Users": {
                   "value": {
-                    "name": "Jane",
-                    "username": "JaneLima",
-                    "email": "jane49@gmail.com",
-                    "password": "1234",
-                    "photo": "yfehgvorbhjtonjhpi"
+                    "name": "JAne",
+                    "username": "ugi",
+                    "email": "janefeitosalima49@gmail.com",
+                    "password": "123",
+                    "photograph": "https://i.imgur.com/Ry1cb5M.png"
                   }
                 }
               }
@@ -49,19 +46,19 @@
           }
         },
         "responses": {
+          "400": {
+            "description": "Not Found"
+          },
           "201": {
             "description": "Created",
             "content": {
               "application/json": {
-                "schema": {
+                "schemma": {
                   "type": "object",
                   "$ref": "#/components/schema/Users"
                 }
               }
             }
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -160,7 +157,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
+                  "type": "array",
                   "$ref": "#/components/schema/characters"
                 }
               }

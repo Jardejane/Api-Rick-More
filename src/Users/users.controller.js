@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const userService = require ("./users.service.js")
-
+// const {user} = require ("./users.service.js")
 const userControllerCreate = async (req,res)=>{
     const {name , username, email, password, photograph} = req.body
 
