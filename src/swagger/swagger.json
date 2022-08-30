@@ -1,0 +1,437 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API do Rick and Morty",
+    "descripition": "API of Rick",
+    "contact": {
+      "email": "janefeitosalima49@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:130",
+      "descripition": "API local"
+    },
+    {
+      "url": "",
+      "descripition": "API Heroku"
+    }
+  ],
+
+  "paths": {
+
+    "/users/create": {
+      "post": {
+        "summary": "Creates new user",
+        "description": "Route responsable for creating a new user",
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schema/Users"
+              },
+              "examples": {
+                "Users": {
+                  "value": {
+                    "name": "Jane",
+                    "username": "JaneLima",
+                    "email": "jane49@gmail.com",
+                    "password": "1234",
+                    "photo": "yfehgvorbhjtonjhpi"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schema/Users"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+
+    "/users": {
+      "get": {
+        "summary": "Buscar todos os usuários",
+        "description": "Rota responsável por buscar todos os usuários",
+        "tags": ["Users"],
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schema/Users"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/auth/login": {
+      "post": {
+        "summary": "fazer login",
+        "description": "Rota responsável fazer o login de um user cadastrado",
+        "tags": ["Auth"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schema/Users"
+              },
+              "examples": {
+                "User": {
+                  "value": {
+                    "email": "janr@gmail.com",
+                    "password": "123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+
+    "/characters/create": {
+      "post": {
+        "summary": "Creates a new character",
+        "description": "Route responsable for creating a new character",
+        "tags": ["Character"],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schema/characters"
+              },
+              "examples": {
+                "Tweet": {
+                  "value": {
+                    "user": "jane",
+                    "name": "text",
+                    "imageUrl": "guyyyyggggygy"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schema/characters"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/characters": {
+      "get": {
+        "summary": "Show the characters",
+        "description": "Route responsable for showing the characters",
+        "tags": ["Character"],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schema/characters"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/characters/find/{id}": {
+      "get": {
+        "summary": "Search a character by id",
+        "description": "Route responsable for searching a character by id",
+        "tags": ["Character"],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Character id for search",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schema/characters"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/characters/update/{id}": {
+      "put": {
+        "summary": "Edit character by id",
+        "description": "Route responsable for editing a character by id",
+        "tags": ["Character"],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Character id for search",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schema/characters"
+              },
+              "examples": {
+                "Character": {
+                  "value": {
+                    "name": "Nake Terminator",
+                    "imageUrl": "https://rickandmortyapi.com/api/character/avatar/577.jpeg"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schema/characters"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/characters/delete/{id}": {
+      "delete": {
+        "summary": "Delete a character by id",
+        "description": "Route responsable for deleting a character by id",
+        "tags": ["Character"],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Character id for delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schema/characters"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/characters/search": {
+      "get": {
+        "summary": "Search character by name",
+        "description": "Route responsable for searching a character by name",
+        "tags": ["Character"],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schema/characters"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schema": {
+      "Users": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "photograph": {
+            "type": "string"
+          }
+        }
+      },
+      "characters": {
+        "user": {
+          "type": "string"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
