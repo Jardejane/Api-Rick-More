@@ -4,7 +4,7 @@
 Essa API cumpre todos os requisitos solicitado no projeto
 Os requisitos 👇👇👇
 
-Endpoints
+## Endpoints
 [POST] Criar usuários;
 
 [GET] Buscar todos os usuários;
@@ -24,7 +24,7 @@ Endpoints
 [DELETE] Exclusão de personagens por ID;
 
 
-Requisitos
+## Requisitos
 
 Formatação do código utilizando o Prettier;
 
@@ -32,25 +32,25 @@ Persistência de dados no MongoDB
 
 
 
-## Documentação da API
+# Documentação da API
 
 Aqui na API Tem rotas principais 
 
-- Users
+ ### Users
 
 ---Nssa rota tem dos metodos GET e o POST o post você pode criar novos usuarios
 
 o get mostra todos os usuarios criado por você
 
 
--Auth 
+ ### Auth 
 
 ---Nessa rota você pode fazer o login do usuarios que foi criado 
 
 isso vai gerar um toke no qualm  vai ser muito importante para a proxima rota
 
 
--Charactes
+### Charactes
 
 ---Essa rota contem 6 metodos que vai está aqui embaixo 👇👇
 
@@ -73,7 +73,7 @@ _DELETE/Delete/id-> esse metodo exclui o personagem atravez do id dele
 -GET/Search -> esse mettodo pesquisa o personagens pelo nome dele
 
 
-##Link da Api 👇👇
+## Link da Api 👇👇
 
 https://api-rike-morty.herokuapp.com/api-docs/
 
