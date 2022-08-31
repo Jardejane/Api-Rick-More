@@ -73,7 +73,7 @@ _DELETE/Delete/id-> esse metodo exclui o personagem atravez do id dele
 -GET/Search -> esse mettodo pesquisa o personagens pelo nome dele
 
 
-#Link da Api 👇👇
+##Link da Api 👇👇
 
 https://api-rike-morty.herokuapp.com/api-docs/
 
