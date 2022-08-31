@@ -15,5 +15,4 @@ module.exports = {
   authLoginService,
   generateToke,
   findUserById,
-  
 };
